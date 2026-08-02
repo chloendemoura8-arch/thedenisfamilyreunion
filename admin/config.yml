@@ -10,8 +10,8 @@ media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 # Friendly labels
-site_url: https://YOUR-SITE.netlify.app
-logo_url: https://YOUR-SITE.netlify.app/favicon.ico
+site_url: https://thedenisfamilyreunion.netlify.app
+logo_url: https://thedenisfamilyreunion.netlify.app/favicon.ico
 
 collections:
   - name: "settings"
