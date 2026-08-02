@@ -11,7 +11,7 @@ public_folder: "/assets/uploads"
 
 # Friendly labels
 site_url: https://thedenisfamilyreunion.netlify.app
-logo_url: https://thedenisfamilyreunion.netlify.app/favicon.ico
+# logo_url: add assets/logo.png to the repo first, then set this to https://thedenisfamilyreunion.netlify.app/assets/logo.png
 
 collections:
   - name: "settings"
