@@ -1,0 +1,122 @@
+# Denis Family Reunion — content editor configuration
+# Only people INVITED through Netlify Identity (invite-only) can log in and edit.
+
+backend:
+  name: git-gateway
+  branch: main            # change to "master" if your repo's default branch is master
+
+# Where photos uploaded through the editor are stored
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Friendly labels
+site_url: https://YOUR-SITE.netlify.app
+logo_url: https://YOUR-SITE.netlify.app/favicon.ico
+
+collections:
+  - name: "settings"
+    label: "Reunion Website"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "content"
+        label: "Reunion Details"
+        file: "content.json"
+        description: "Everything you can change on the site — venues, dates, photos and more. Edit, then press Publish."
+        fields:
+          - { label: "Event dates", name: "dates", widget: "string", hint: "Shown in the hero and footer — e.g. July 23–25, 2027" }
+          - { label: "Location line", name: "location", widget: "string" }
+          - { label: "RSVP deadline", name: "rsvpDeadline", widget: "string" }
+          - { label: "Committee email", name: "committeeEmail", widget: "string" }
+
+          - label: "📣 Announcements (news board)"
+            name: "announcements"
+            widget: "list"
+            required: false
+            label_singular: "Announcement"
+            summary: "{{fields.date}} — {{fields.title}}"
+            hint: "Posts shown in the News section, newest first. Tick 'Pin to top' to keep an important one at the top. Add, edit, reorder or delete freely — press Publish and it's live in about a minute."
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Message", name: "body", widget: "text" }
+              - { label: "Pin to top?", name: "pinned", widget: "boolean", default: false, required: false }
+
+          - label: "Friday — Welcome Cocktail"
+            name: "friday"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Time / dress code", name: "time", widget: "string" }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+
+          - label: "Saturday — Eisenhower Park (day)"
+            name: "park"
+            widget: "object"
+            fields:
+              - { label: "Time / dress code", name: "time", widget: "string" }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+
+          - label: "Saturday — The White Party (night)"
+            name: "party"
+            widget: "object"
+            fields:
+              - { label: "Time / dress code", name: "time", widget: "string" }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+
+          - label: "Sunday — Farewell Brunch"
+            name: "brunch"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Time / dress code", name: "time", widget: "string" }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+
+          - { label: "Where to stay (Venues section)", name: "stay", widget: "text" }
+          - { label: "Cost / contribution note (FAQ)", name: "cost", widget: "text" }
+
+          - label: "💳 Family Contribution (payments)"
+            name: "payments"
+            widget: "object"
+            hint: "The contribution amount, wording and payment links. Fill in ONLY the payment options you want to offer — any left blank simply won't appear on the site."
+            fields:
+              - { label: "Section eyebrow", name: "eyebrow", widget: "string", required: false }
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro paragraph", name: "blurb", widget: "text", required: false }
+              - { label: "Amount label", name: "amountLabel", widget: "string", required: false, hint: "e.g. Suggested contribution" }
+              - { label: "Amount", name: "amount", widget: "string", hint: "e.g. $150 per adult — change this anytime" }
+              - { label: "Deadline line", name: "deadline", widget: "string", required: false }
+              - { label: "Reference / note", name: "reference", widget: "text", required: false }
+              - label: "Payment options (leave blank to hide)"
+                name: "methods"
+                widget: "object"
+                fields:
+                  - { label: "Card link — Stripe Payment Link", name: "stripeUrl", widget: "string", required: false, hint: "Full https:// checkout link. See SETUP.md, Part 4A." }
+                  - { label: "PayPal link — PayPal.Me or button", name: "paypalUrl", widget: "string", required: false, hint: "e.g. https://paypal.me/yourname. See SETUP.md, Part 4B." }
+                  - { label: "Zelle — email or phone", name: "zelleHandle", widget: "string", required: false, hint: "The email or phone number family send Zelle to." }
+                  - { label: "Venmo — @handle", name: "venmoHandle", widget: "string", required: false, hint: "e.g. @Denis-Reunion" }
+                  - { label: "Cash App — $Cashtag", name: "cashappHandle", widget: "string", required: false, hint: "e.g. $DenisReunion" }
+
+              - label: "Installments messaging"
+                name: "installments"
+                widget: "object"
+                hint: "Controls the 'Prefer to pay in installments?' panel under the payment options. Untick 'Show' to hide it."
+                fields:
+                  - { label: "Show installments panel", name: "enabled", widget: "boolean", default: true }
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "PayPal (Pay in 4) note", name: "paypalNote", widget: "text", required: false }
+                  - { label: "Stripe (payment plan) note", name: "stripeNote", widget: "text", required: false }
+
+          - label: "Memories photos"
+            name: "gallery"
+            widget: "list"
+            required: false
+            summary: "{{fields.image}}"
+            field: { label: "Photo", name: "image", widget: "image" }

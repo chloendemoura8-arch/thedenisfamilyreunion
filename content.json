@@ -1,0 +1,67 @@
+{
+  "dates": "July 23–25, 2027",
+  "location": "Long Island, New York",
+  "rsvpDeadline": "June 1, 2027",
+  "committeeEmail": "denisfamilyreunion@email.com",
+  "friday": {
+    "title": "Welcome Cocktail Night",
+    "time": "Evening · Cocktail Attire",
+    "venue": "Host hotel — venue to be announced",
+    "desc": "We open the weekend with a warm welcome cocktail reception. Reunite with family arriving from near and far over drinks and hors d'oeuvres, pick up your reunion T-shirt and weekend program, and toast to the days ahead."
+  },
+  "park": {
+    "time": "Daytime · Casual & Comfortable",
+    "venue": "Eisenhower Park · East Meadow, Long Island",
+    "address": "1899 Hempstead Tpke, East Meadow, NY 11554",
+    "desc": "The heart of the reunion. A full day together in one of Long Island's most beautiful parks — food, games, group photos, and time for every branch of the family to reconnect. Bring your appetite and your team spirit for the family games."
+  },
+  "party": {
+    "time": "Evening · All-White Dress Code",
+    "venue": "Mirelle's Restaurant · Westbury, New York",
+    "address": "170 Post Ave, Westbury, NY 11590",
+    "desc": "The signature night of the weekend. Dress head-to-toe in white and join us for dinner, music, and dancing to celebrate the family in style. An evening to remember, photographed to last."
+  },
+  "brunch": {
+    "title": "Farewell Brunch",
+    "time": "Late Morning · Come as you are",
+    "venue": "Location to be announced",
+    "desc": "Before we scatter back to our corners of the world, we gather one last time over brunch. Long hugs, shared plates, exchanged numbers, and promises to do it all again. Until next time, family."
+  },
+  "stay": "We're finalizing a host hotel (site of Friday's welcome night) and will share a room-block link here. Check back soon for booking details.",
+  "cost": "Yes — there is a $200 contribution per attending adult, which covers the venues, catering, and your reunion T-shirt. Please pay it in the Contribute section of this site by June 1, 2027. T-shirt orders on the RSVP form help us print the right sizes and quantities.",
+  "gallery": [],
+
+  "_comment_announcements": "Add, edit, pin, or delete posts below (newest first). Each post has a date (YYYY-MM-DD), a title, body text, and an optional pinned flag. Easiest to edit in the /admin/ editor. The starter post below can be edited or removed.",
+  "announcements": [
+    {
+      "date": "2026-08-01",
+      "title": "Welcome to the reunion website 🌳",
+      "body": "We're so excited to bring the whole family together on Long Island in July 2027. This news board is where we'll post every update — confirmed venues, the hotel room block, contribution details, and reminders as the weekend gets closer. Check back often, and RSVP whenever you're ready!",
+      "pinned": true
+    }
+  ],
+
+  "_comment_payments": "The contribution amount and text below are editable in /admin/. Under 'methods', paste ONLY the options you want to offer — leave the rest blank and they won't show. stripeUrl / paypalUrl take a full https:// checkout link; zelleHandle / venmoHandle / cashappHandle take the email, phone, @handle or $Cashtag family should send to. See SETUP.md, Part 5.",
+  "payments": {
+    "eyebrow": "Family Contribution",
+    "heading": "Your contribution for the weekend",
+    "blurb": "Each attending adult's $200 contribution covers their share of the venues, catering, and reunion T-shirts. We kindly ask every adult to contribute by the RSVP deadline so the whole weekend is fully covered — thank you for making it possible.",
+    "amountLabel": "Contribution per adult",
+    "amount": "$200",
+    "deadline": "Kindly contribute by June 1, 2027",
+    "reference": "Please add your family / household name in the payment note so the committee can check you off. Payments are handled entirely by the payment provider — no card details are ever entered on, or stored by, this website.",
+    "methods": {
+      "stripeUrl": "",
+      "paypalUrl": "",
+      "zelleHandle": "",
+      "venmoHandle": "",
+      "cashappHandle": ""
+    },
+    "installments": {
+      "enabled": true,
+      "heading": "Prefer to pay in installments?",
+      "paypalNote": "Choose PayPal above and pick “Pay in 4” at checkout — PayPal splits your $200 into four payments over six weeks and handles all the reminders. Nothing extra to set up.",
+      "stripeNote": "Or request a payment-plan invoice — Stripe emails you a schedule and sends an automatic reminder before each due date, and you pay each part with one tap."
+    }
+  }
+}

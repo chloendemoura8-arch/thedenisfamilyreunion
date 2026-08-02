@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Denis Family Reunion · Committee Editor</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:0;background:#faf6ee;color:#2b2620;}
+    #boot{max-width:640px;margin:12vh auto;padding:0 24px;text-align:center;}
+    #boot h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;color:#171410;font-size:1.5rem;margin:14px 0 0;}
+    #boot .card{background:#fff;border:1px solid rgba(23,20,16,.14);border-radius:10px;padding:22px 26px;box-shadow:0 12px 34px -20px rgba(23,20,16,.4);text-align:left;margin-top:20px;line-height:1.6;}
+    #boot .card p{margin:0 0 12px;}
+    #boot ul{margin:0;padding-left:20px;}
+    #boot li{margin:7px 0;}
+    #boot code{background:#f2ebdd;padding:2px 6px;border-radius:4px;font-size:.92em;}
+    #boot a{color:#9c7c42;}
+    .spin{display:inline-block;width:26px;height:26px;border:3px solid #e4dcc9;border-top-color:#9c7c42;border-radius:50%;animation:spin 1s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+  </style>
+</head>
+<body>
+  <!-- Friendly boot screen: shown until the editor takes over, or if it can't load. -->
+  <div id="boot">
+    <div class="spin" id="bootSpin"></div>
+    <h1 id="bootTitle">Opening the committee editor…</h1>
+    <div class="card" id="bootError" style="display:none">
+      <p><strong>The editor couldn't load.</strong> This page is only a launcher — the login and editor themselves run on the <em>published</em> website and load over the internet, so this screen is expected to be blank anywhere else.</p>
+      <p>Please check that:</p>
+      <ul>
+        <li>You're opening it at your <strong>live web address</strong>, e.g. <code>https://your-site.netlify.app/admin/</code> — not a downloaded file, an in-chat preview, or the saved artifact.</li>
+        <li>The site is deployed and <strong>Netlify Identity</strong> + <strong>Git Gateway</strong> are turned on (see <code>SETUP.md</code>, Parts 1 &amp; 3), and you've accepted your email invite and set a password.</li>
+        <li>No firewall, VPN, or ad-blocker is blocking <code>identity.netlify.com</code> or <code>unpkg.com</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Netlify Identity: the invite-only email + password login. -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Decap CMS: the editing screen. Pinned to a fixed version for stability. -->
+  <script src="https://unpkg.com/decap-cms@3.14.0/dist/decap-cms.js"></script>
+  <script>
+    (function(){
+      var started = Date.now();
+      // As soon as the editor mounts, clear the boot screen so it doesn't overlap.
+      var poll = setInterval(function(){
+        if (window.CMS || document.getElementById('nc-root')) {
+          var b = document.getElementById('boot');
+          if (b && b.parentNode) b.parentNode.removeChild(b);
+          clearInterval(poll);
+        } else if (Date.now() - started > 7000) {
+          // Editor never loaded — replace the blank/spinner with real guidance.
+          var spin = document.getElementById('bootSpin'); if (spin) spin.style.display = 'none';
+          var title = document.getElementById('bootTitle'); if (title) title.textContent = 'Editor couldn’t load';
+          var err = document.getElementById('bootError'); if (err) err.style.display = 'block';
+          clearInterval(poll);
+        }
+      }, 300);
+    })();
+  </script>
+</body>
+</html>
